@@ -43,6 +43,7 @@ public class RabbitMqConfig {
      * 队列与交换器的绑定
      * @return
      */
+    @Bean
     public Binding bindQueueExchange(@Qualifier("bootQueue") Queue queue, @Qualifier("bootExchange") Exchange exchange) {
         //参数解释：该队列与哪个交换机进行绑定，指定的routingkey是什么
         return BindingBuilder.bind(queue).to(exchange).with("boot.#").noargs();
