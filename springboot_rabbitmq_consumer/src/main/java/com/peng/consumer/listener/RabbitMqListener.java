@@ -1,5 +1,6 @@
 package com.peng.consumer.listener;
 
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -14,11 +15,12 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@RabbitListener(queues = "queue1")
-public class DirectListener {
+//@RabbitListener(queues = "queue1")
+public class RabbitMqListener {
 
-    @RabbitHandler
-    public void getMsg(String message) {
+//    @RabbitHandler
+    @RabbitListener(queues = "boot_queue")
+    public void getMsg(Message message) {
         System.out.println("从queue1队列中获取数据"+ message);
     }
 }

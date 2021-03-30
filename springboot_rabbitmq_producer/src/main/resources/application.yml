@@ -2,8 +2,9 @@ server:
   port: 8084
 spring:
   rabbitmq:
-    host: localhost
+    host: 81.69.56.148
     port: 5672
-#    username: bq123 #用户名称
-#    password: bq123 #密码
-#    virtual-host: #交换器名称
+    username: gaopeng #admin 用户名称
+    password: gaopeng #admin 密码
+    virtual-host: gaopeng_hosts #链接的交换器(类似于mysql数据库)
+    connection-timeout: 15000 #链接超时时间

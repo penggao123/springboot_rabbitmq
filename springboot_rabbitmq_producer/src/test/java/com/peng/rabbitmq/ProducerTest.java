@@ -3,7 +3,9 @@ package com.peng.rabbitmq;
 import com.peng.rabbitmq.config.RabbitMqConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -83,6 +85,38 @@ public class ProducerTest {
      */
     @Test
     public void send() {
+//        rabbitTemplate.setMandatory();//用于设置交换机处理失败的模式  为true时，消息到达不了队列时，会将消息重新返回给生产者
+
+        /**
+         * return退回机制
+         */
+//        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
+        //参数1：消息对象
+        //参数2：错误码
+        //参数3：错误信息
+        //参数4：交换机
+        //参数5：路由key
+//            @Override
+//            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+//
+//            }
+//        });
+
+        /**
+         * confirm 模式
+         */
+//        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+//            /**
+//             *
+//             * @param correlationData  //相关配置信息
+//             * @param ack              //交换机 是否成功收到了消息  true:成功   false:失败
+//             * @param cause           //失败原因
+//             */
+//            @Override
+//            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+//
+//            }
+//        });
         rabbitTemplate.convertAndSend("boot_topic_exchange", "boot.haha", "boot mq .......");
     }
 }
